@@ -8,20 +8,23 @@ import {
   IconTableColumn,
 } from "@tabler/icons-react";
 
-export default function MyBentoGrid() {
+const MovieList = () => {
   return (
-    <BentoGrid className="w-full ">
-      {items.map((item, i) => (
-        <BentoGridItem
-          key={i}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          className={item.className}
-          icon={item.icon}
-        />
-      ))}
-    </BentoGrid>
+    <div className="flex flex-col w-full gap-4">
+      <h1 className="text-3xl font-semibold md:text-center">All Movies</h1>
+      <BentoGrid className="w-full ">
+        {items.map((item, i) => (
+          <BentoGridItem
+            key={i}
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className={item.className}
+            icon={item.icon}
+          />
+        ))}
+      </BentoGrid>
+    </div>
   );
 }
 const Skeleton = () => (
@@ -32,7 +35,21 @@ const items = [
     title: "The Dawn of Innovation",
     description: "Explore the birth of groundbreaking ideas and inventions.",
     header: <Skeleton />,
-    className: "md:col-span-2",
+    className: "md:col-span-1",
+    icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "The Digital Revolution",
+    description: "Dive into the transformative power of technology.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "The Dawn of Innovation",
+    description: "Explore the birth of groundbreaking ideas and inventions.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
   },
   {
@@ -54,7 +71,10 @@ const items = [
     description:
       "Understand the impact of effective communication in our lives.",
     header: <Skeleton />,
-    className: "md:col-span-2",
+    className: "md:col-span-1",
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
   },
 ];
+
+
+export default MovieList

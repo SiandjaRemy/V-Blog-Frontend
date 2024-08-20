@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col gap-2">
-        <div className="h-20 flex shadow items-center">
-          <Header />
+      <body className="flex flex-col">
+        <div className="h-20">
+          <Navbar />
         </div>
-        {children}
+        <div className="h-[calc(100vh-5rem)] flex-grow py-6 md:overflow-y-auto px-6 md:px-12 lg:px-20 xl:px-32 2xl:px-48">
+          {children}
+        </div>
       </body>
     </html>
   );
