@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 
 import MovieListItem from "../blog/MovieListItem";
+import { PostType } from "@/app/page";
 
 export const BentoGrid = ({
   className,
@@ -10,25 +11,18 @@ export const BentoGrid = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div className={cn("grid  grid-cols-1 md:grid-cols-3 gap-4", className)}>
+    <div className={cn("grid grid-cols-1 gap-4", className)}>
       {children}
     </div>
   );
 };
 
-export const BentoGridItem = ({
-  className,
-  title,
-  description,
-  header,
-  icon,
-}: {
-  className?: string;
-  title?: string | React.ReactNode;
-  description?: string | React.ReactNode;
-  header?: React.ReactNode;
-  icon?: React.ReactNode;
-}) => {
+interface MovieItemProps {
+  movie: PostType,
+  className?: string,
+}
+
+export const BentoGridItem: React.FC<MovieItemProps> = ({movie, className}) => {
   return (
     <div
       className={cn(
@@ -36,7 +30,7 @@ export const BentoGridItem = ({
         className
       )}
     >
-      <MovieListItem />
+      <MovieListItem movie={movie} />
     </div>
   );
 };
