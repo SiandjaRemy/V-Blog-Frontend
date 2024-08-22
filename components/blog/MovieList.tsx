@@ -21,6 +21,11 @@ const MovieList:React.FC<MovieListProps> = ({allMovies}) => {
           />
         ))}
       </BentoGrid>
+      <div className="flex items-center justify-evenly py-5">
+        <button className="flex border rounded-md px-6 py-2 text-lg font-semibold hover:shadow-md transition duration-200">
+          Load more
+        </button>
+      </div>
     </div>
   );
 }

@@ -4,17 +4,22 @@ import Image from "next/image";
 
 import { useState, useEffect } from "react";
 
-import { getPosts, reactToPost } from "./services/apiServices";
+import { getData, getExternalData } from "./services/apiServices";
 import apiService from "./services/apiService";
 import MovieList from "@/components/blog/MovieList";
 import PopularMovieList from "@/components/blog/PopularMovieList";
 
 export type ReactionType = {
-  id: string;
   ip_address: string;
-  type: string;
-  created_at: string;
+  type?: string;
+  created_at?: string;
 };
+
+export type CommentType = {
+  content: string;
+  created_at?: string;
+};
+
 
 export type PostType = {
   id: string;
@@ -23,18 +28,17 @@ export type PostType = {
   my_review: string;
   image: string;
   gif: string;
-  image_url: string;
-  gif_url: string;
   created_at: string;
   reactions?: ReactionType[];
+  comments?: CommentType[];
 };
 
 export default function Home() {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const fetchData = async () => {
-    const data = await getPosts("/blog/posts");
+  const fetchAllPosts = async () => {
+    const data = await getData("/blog/post");
     if (data) {
       setPosts(data.results);
       setIsLoaded(true);
@@ -42,17 +46,9 @@ export default function Home() {
     }
   };
 
-  //   const getPosts = async () => {
-  //     const url = "/blog/posts";
-  //     const data = await apiService.get(url);
-  //     setPosts(data);
-  //     setIsLoaded(true)
-  //     console.log('data', data)
-  // };
 
   useEffect(() => {
-    fetchData();
-    // getPosts();
+    fetchAllPosts();
   }, []);
 
   return (
